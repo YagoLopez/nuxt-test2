@@ -48,6 +48,7 @@ export default {
   ** Build configuration
   */
   build: {
+    analyze: true,
     // transpile: ['vue-json-pretty'],
     /*
     ** You can extend webpack config here
