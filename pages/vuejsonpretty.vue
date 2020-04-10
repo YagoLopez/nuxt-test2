@@ -11,7 +11,7 @@
   import {Vue, Component} from 'vue-property-decorator';
 
   @Component
-  export default class Vjsonpretty extends Vue {
+  export default class Vuejsonpretty extends Vue {
     test = 'test';
     mydata = [1, 2, 3];
   }

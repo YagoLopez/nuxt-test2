@@ -17,12 +17,13 @@
   }
 
   @Component
-  export default class YourComponent extends Vue {
+  export default class MyTsComponent extends Vue {
+
     @Prop({ type: Object, required: true }) readonly user!: User;
 
     message: string = 'This is a message';
 
-    get fullName (): string {
+    get fullName(): string {
       return `${this.user.firstName} ${this.user.lastName}`
     }
   }

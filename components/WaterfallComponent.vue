@@ -11,17 +11,20 @@
       <!--
         your component
       -->
+      <h1>hola</h1>
     </waterfall-slot>
   </waterfall>
 </template>
 
-<script>
+<script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator'
-  import Waterfall from 'vue-waterfall/lib/waterfall';
-  import WaterfallSlot from 'vue-waterfall/lib/waterfall-slot';
+  // import Waterfall from 'vue-waterfall/lib/waterfall';
+  // import WaterfallSlot from 'vue-waterfall/lib/waterfall-slot';
+  // import { Waterfall, WaterfallSlot } from 'vue-waterfall';
 
-  @Component({components: {Waterfall, WaterfallSlot}})
-  export default class WaterfallPage extends Vue {
-    @Prop() items;
+
+  // @Component({components: {Waterfall, WaterfallSlot}})
+  export default class WaterfallComponent extends Vue {
+    @Prop() items: any;
   }
 </script>

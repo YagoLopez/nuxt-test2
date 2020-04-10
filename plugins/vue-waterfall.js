@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import VueJsonPretty from 'vue-json-pretty';
+import { Waterfall, WaterfallSlot } from 'vue-waterfall';
 
-// Vue.use(VueJsonPretty);
-Vue.component('vue-json-pretty', VueJsonPretty);
+Vue.component('waterfall', Waterfall);
+Vue.component('waterfall-slot', WaterfallSlot);
 
