@@ -11,28 +11,53 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <infinite-loading
+      spinner="spiral"
+      @infinite="infiniteScroll"
+    ></infinite-loading>
   </v-card>
 </template>
 
 <script lang="ts">
   import {Vue, Component} from 'vue-property-decorator';
-  // import axios from 'axios';
-  import * as postsList from './posts.json';
+  import axios from 'axios';
 
   @Component
   export default class Posts extends Vue {
-    titles2 = [
-      {body: 'post 1'},
-      {body: 'post 2'},
-      {body: 'post 3'},
-    ];
 
-    titles = postsList.default;
+    titles: Object[] = [];
+    page: number = 1;
 
+    get url() {
+      return "https://jsonplaceholder.typicode.com/posts?_page=" + this.page;
+    }
 
+    async fetchData() {
+        const response = await axios.get(this.url);
+        this.titles = response.data;
+        console.log('this.titles', this.titles);
+        console.log('this.page', this.page);
+        console.log('this.url', this.url);
+    }
 
-    // created() {
-    //   console.log('posts', postsList.default);
-    // }
+    created() {
+      this.fetchData();
+    }
+
+    infiniteScroll($state: any) {
+      setTimeout(() => {
+        this.page++;
+        axios.get(this.url)
+          .then((response) => {
+            if (response.data.length > 1) {
+              response.data.forEach((item: any) => this.titles.push(item));
+              $state.loaded();
+            } else {
+              $state.complete()
+            }
+          })
+          .catch((err) => {console.log(err)})
+      }, 500)
+    }
   }
 </script>
