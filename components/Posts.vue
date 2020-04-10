@@ -17,14 +17,22 @@
 <script lang="ts">
   import {Vue, Component} from 'vue-property-decorator';
   // import axios from 'axios';
-  // import * as postsList from './posts.json';
+  import * as postsList from './posts.json';
 
   @Component
   export default class Posts extends Vue {
-    titles = [
+    titles2 = [
       {body: 'post 1'},
       {body: 'post 2'},
       {body: 'post 3'},
-      ];
+    ];
+
+    titles = postsList.default;
+
+
+
+    // created() {
+    //   console.log('posts', postsList.default);
+    // }
   }
 </script>
