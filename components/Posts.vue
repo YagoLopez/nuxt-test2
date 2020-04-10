@@ -2,7 +2,7 @@
   <v-card flat>
     <v-layout row wrap>
       <v-flex v-for="(title, index) in titles" :key="index">
-        <v-card flat hover class="white pb-2 mb-1 pl-2">
+        <v-card hover class="white pb-2 mb-1 pl-2">
           <v-layout>
             <v-flex xs10>
               <div class="py-2">{{ title.body }}</div>
@@ -47,6 +47,7 @@
     infiniteScroll($state: any) {
       setTimeout(() => {
         this.page++;
+        // todo: use async/await
         axios.get(this.url)
           .then((response) => {
             if (response.data.length > 1) {
