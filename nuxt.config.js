@@ -29,7 +29,9 @@ export default {
   */
   plugins: [
     {src: '~/plugins/vue-json-pretty', mode: 'client'},
-    {src: '~/plugins/vue-waterfall', mode: 'client'}
+    // todo: remove waterfall
+    {src: '~/plugins/vue-waterfall', mode: 'client'},
+    {src: '~/plugins/infiniteloading', mode: 'client'}
   ],
   /*
   ** Nuxt.js dev-modules
@@ -38,12 +40,19 @@ export default {
     '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/vuetify',
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
   ],
+
+  axios: {
+    // proxyHeaders: false
+  },
+
   /*
   ** Build configuration
   */
