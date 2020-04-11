@@ -1,4 +1,4 @@
-# mamby-test1
+# nuxt-test2
 
 > My fantastic Nuxt.js project
 
