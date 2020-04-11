@@ -4,7 +4,7 @@
       <v-flex v-for="(post, index) in posts" :key="index">
 
         <!--todo: hacer post component-->
-        <v-card max-width="344" class="mx-auto">
+        <v-card hover max-width="344" class="mx-auto">
           <v-list-item>
             <v-list-item-avatar color="grey"></v-list-item-avatar>
             <v-list-item-content>
