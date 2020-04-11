@@ -2,15 +2,7 @@
   <v-card flat>
     <v-layout row wrap>
       <v-flex v-for="(title, index) in titles" :key="index">
-<!--
-        <v-card hover class="white pb-2 mb-1 pl-2">
-          <v-layout>
-            <v-flex xs10>
-              <div class="py-2">{{ title.body }}</div>
-            </v-flex>
-          </v-layout>
-        </v-card>
--->
+
         <v-card max-width="344" class="mx-auto">
           <v-list-item>
             <v-list-item-avatar color="grey"></v-list-item-avatar>
@@ -19,11 +11,8 @@
               <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-
           <v-img src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg" height="194"/>
-
           <v-card-text>{{ title.body }}</v-card-text>
-
           <v-card-actions>
             <v-btn text color="deep-purple accent-4">Read</v-btn>
             <v-btn text color="deep-purple accent-4">Bookmark</v-btn>
@@ -35,10 +24,7 @@
 
       </v-flex>
     </v-layout>
-    <infinite-loading
-      spinner="spiral"
-      @infinite="infiniteScroll"
-    ></infinite-loading>
+    <infinite-loading spinner="spiral" @infinite="infiniteScroll"/>
   </v-card>
 </template>
 
