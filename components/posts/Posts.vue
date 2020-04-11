@@ -4,7 +4,8 @@
       <v-flex v-for="(post, index) in posts" :key="index">
 
         <!--todo: hacer post component-->
-        <v-card hover max-width="344" class="mx-auto">
+        <client-only>
+          <v-card hover max-width="344" class="mx-auto">
           <v-list-item>
             <v-list-item-avatar color="grey"></v-list-item-avatar>
             <v-list-item-content>
@@ -22,6 +23,7 @@
             <v-btn icon><v-icon>mdi-share-variant</v-icon></v-btn>
           </v-card-actions>
         </v-card>
+        </client-only>
 
       </v-flex>
     </v-layout>

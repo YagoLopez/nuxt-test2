@@ -8,7 +8,7 @@
 
 <script lang="ts">
   import {Vue, Component} from 'vue-property-decorator';
-  import Posts from '../components/Posts.vue';
+  import Posts from '../components/posts/Posts.vue';
 
   @Component({components: {posts: Posts}})
   export default class InfiniteScroll extends Vue {
