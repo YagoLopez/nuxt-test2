@@ -1,78 +1,62 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        mamby-test1
-      </h1>
-      <h2 class="subtitle">
-        My fantastic Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+  <v-flex>
+    <v-container fluid grid-list-lg class="mt-5">
+
+      <client-only>
+        <v-card flat>
+          <v-layout row wrap>
+            <v-flex v-for="(post, index) in posts" :key="index">
+              <!--todo: hacer post component-->
+              <v-card hover max-width="344" class="mx-auto">
+                <v-list-item>
+                  <v-list-item-avatar color="grey"></v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title class="headline">{{ post.title }}</v-list-item-title>
+                    <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-img src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg" height="194"/>
+                <v-card-text>{{ post.body }}</v-card-text>
+                <v-card-actions>
+                  <v-btn text color="deep-purple accent-4">Read</v-btn>
+                  <v-btn text color="deep-purple accent-4">Bookmark</v-btn>
+                  <v-spacer></v-spacer>
+                  <v-btn icon><v-icon>mdi-heart</v-icon></v-btn>
+                  <v-btn icon><v-icon>mdi-share-variant</v-icon></v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-flex>
+          </v-layout>
+          <infinite-loading spinner="spiral" @infinite="onReachBottomPage"/>
+        </v-card>
+      </client-only>
+
+    </v-container>
+  </v-flex>
 </template>
 
-<script>
-import Vue from 'vue'
-import Logo from '~/components/Logo.vue'
+<script lang="ts">
+  import {Vue, Component} from 'vue-property-decorator';
+  import {getModule} from 'vuex-module-decorators';
+  import PostsModule from '~/store/PostsModule';
 
-export default Vue.extend({
-  components: {
-    Logo
+  @Component
+  export default class InfiniteScroll extends Vue {
+
+    posts: any = [];
+    page: number = 1;
+    $store: any;
+
+    async onReachBottomPage($state: any) {
+      const postsModule: PostsModule = getModule(PostsModule, this.$store);
+      await postsModule.fetchPosts();
+      const newPosts = postsModule.posts;
+      if (newPosts.length > 1) {
+        this.posts.push(...newPosts);
+        $state.loaded();
+      } else {
+        $state.complete();
+      }
+    }
   }
-})
 </script>
-
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
