@@ -3,6 +3,9 @@ import axios from 'axios';
 
 type PostEntity = any;
 
+const BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
+const DELAY = 500;
+
 @Module({
   name: 'PostModule',
   namespaced: true,
@@ -11,6 +14,7 @@ type PostEntity = any;
 export default class PostModule extends VuexModule {
 
   posts: PostEntity[] = [];
+  page: number = 1;
 
   get totalComments(): number {
     return this.posts.filter((post) => {
@@ -22,13 +26,31 @@ export default class PostModule extends VuexModule {
     }, 0)
   }
 
+  get url(): string {
+    return `${BASE_URL}?_page=${this.page}`
+  }
+
   @Mutation
   setPosts(posts: PostEntity[]) {
     this.posts = posts;
   }
 
+  @Mutation
+  incrementPage() {
+    this.page = this.page + 1;
+  }
+
   @Action({commit: 'setPosts'})
   async fetchPosts() {
-    return await axios.get('https://jsonplaceholder.typicode.com/posts?_page=1')
+    let result;
+    try {
+      result = await axios.get(this.url);
+      this.incrementPage();
+      // todo: añadir aqui los nuevos posts a this.posts
+      // console.warn('posts', result);
+    } catch (e) {
+      console.error(e);
+    }
+    return result;
   }
 }

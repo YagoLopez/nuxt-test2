@@ -25,14 +25,13 @@
 
       </v-flex>
     </v-layout>
-    <!--<infinite-loading spinner="spiral" @infinite="infiniteScroll"/>-->
+    <infinite-loading spinner="spiral" @infinite="infiniteScroll"/>
   </v-card>
 </template>
 
 <script lang="ts">
   import {Vue, Component} from 'vue-property-decorator';
   import { getModule } from 'vuex-module-decorators';
-  import MyStoreModule from '~/store/MyStoreModule';
   import PostModule from '~/store/PostModule';
 
   @Component
@@ -58,17 +57,14 @@
 
     async created() {
       // this.fetchData();
-
       // console.log('state', this.$store.state);
 
       const postsModule: PostModule = getModule(PostModule, this.$store);
 
-
       // use getters
       // const commentCount = postsModule.totalComments;
-
       // commit mutation
-      // postsModule.updatePosts(newPostsArray)
+      // postsModule.setPosts(newPostsArray)
 
       // dispatch action
       await postsModule.fetchPosts();
@@ -77,12 +73,13 @@
       this.posts = postsModule.posts.data;
       // console.warn('posts', postsModule.post.data);
 
+    }
 
-
-
-
-      // const MyModuleInstance: any = getModule(MyStoreModule, this.$store);
-      // MyModuleInstance.setTest('random')
+    infiniteScroll($state: any) {
+      const postsModule: PostModule = getModule(PostModule, this.$store);
+        setTimeout(() => {
+          postsModule.fetchPostsNextPage($state);
+        }, 500)
 
     }
 
@@ -101,5 +98,6 @@
     //       .catch((err) => {console.log(err)})
     //   }, 500)
     // }
+
   }
 </script>
