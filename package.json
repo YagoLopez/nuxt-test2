@@ -21,6 +21,7 @@
     "vue-infinite-loading": "^2.4.5",
     "vue-json-pretty": "^1.6.3",
     "vue-property-decorator": "^8.4.1",
+    "vue-virtual-scroller": "^1.0.4",
     "vue-waterfall": "^1.0.6",
     "vuex-module-decorators": "^0.16.1"
   },

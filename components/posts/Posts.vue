@@ -25,7 +25,7 @@
 
       </v-flex>
     </v-layout>
-    <!--<infinite-loading spinner="spiral" @infinite="infiniteScroll"/>-->
+    <infinite-loading spinner="spiral" @infinite="infiniteScroll"/>
   </v-card>
 </template>
 
@@ -63,16 +63,23 @@
 
       // use getters
       // const commentCount = postsModule.totalComments;
-
       // commit mutation
-      // postsModule.updatePosts(newPostsArray)
+      // postsModule.setPosts(newPostsArray)
 
       // dispatch action
-      await postsModule.fetchPosts();
+      await postsModule.fetchInitialPosts();
 
       // access posts
       this.posts = postsModule.posts.data;
       // console.warn('posts', postsModule.post.data);
+
+    }
+
+    infiniteScroll($state: any) {
+      const postsModule: PostModule = getModule(PostModule, this.$store);
+        setTimeout(() => {
+          postsModule.fetchPostsNextPage($state);
+        }, 500)
 
     }
 
@@ -91,5 +98,6 @@
     //       .catch((err) => {console.log(err)})
     //   }, 500)
     // }
+
   }
 </script>
