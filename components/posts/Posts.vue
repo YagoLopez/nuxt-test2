@@ -25,13 +25,19 @@
 
       </v-flex>
     </v-layout>
-    <infinite-loading spinner="spiral" @infinite="infiniteScroll"/>
+    <!--<infinite-loading spinner="spiral" @infinite="infiniteScroll"/>-->
   </v-card>
 </template>
 
 <script lang="ts">
   import {Vue, Component} from 'vue-property-decorator';
-  import axios from 'axios';
+  import { getModule } from 'vuex-module-decorators';
+  import MyStoreModule from '~/store/MyStoreModule';
+  import PostModule from '~/store/PostModule';
+  // import axios from 'axios';
+
+  // import PostsModule from '../../store/PostModule';
+  // import store from '../../store';
 
   @Component
   export default class Posts extends Vue {
@@ -45,32 +51,58 @@
       return `https://jsonplaceholder.typicode.com/posts?_page=${this.page}`;
     }
 
-    async fetchData() {
-        const response = await axios.get(this.url);
-        this.posts = response.data;
-        // console.log('this.posts', this.posts);
-        console.log('this.page', this.page);
-        console.log('this.url', this.url);
+    // async fetchData() {
+    //     const response = await axios.get(this.url);
+    //     this.posts = response.data;
+    //     // console.log('this.posts', this.posts);
+    //     console.log('this.page', this.page);
+    //     console.log('this.url', this.url);
+    // }
+
+    async created() {
+      // this.fetchData();
+
+      // console.log('state', this.$store.state);
+
+      const postsModule: any = getModule(PostModule, this.$store);
+
+
+      // use getters
+      // const commentCount = postsModule.totalComments;
+
+      // commit mutation
+      // postsModule.updatePosts(newPostsArray)
+
+      // dispatch action
+      await postsModule.fetchPosts();
+
+      // access posts
+      this.posts = postsModule.posts.data;
+      // console.warn('posts', postsModule.posts.data);
+
+
+
+
+
+      // const MyModuleInstance: any = getModule(MyStoreModule, this.$store);
+      // MyModuleInstance.setTest('random')
+
     }
 
-    created() {
-      this.fetchData();
-    }
-
-    infiniteScroll($state: any) {
-      setTimeout(() => {
-        this.page++;
-        axios.get(this.url)
-          .then((response) => {
-            if (response.data.length > 1) {
-              response.data.forEach((item: any) => this.posts.push(item));
-              $state.loaded();
-            } else {
-              $state.complete()
-            }
-          })
-          .catch((err) => {console.log(err)})
-      }, 500)
-    }
+    // infiniteScroll($state: any) {
+    //   setTimeout(() => {
+    //     this.page++;
+    //     axios.get(this.url)
+    //       .then((response) => {
+    //         if (response.data.length > 1) {
+    //           response.data.forEach((item: any) => this.posts.push(item));
+    //           $state.loaded();
+    //         } else {
+    //           $state.complete()
+    //         }
+    //       })
+    //       .catch((err) => {console.log(err)})
+    //   }, 500)
+    // }
   }
 </script>
