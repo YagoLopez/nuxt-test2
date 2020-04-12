@@ -59,6 +59,7 @@ export default {
   build: {
     analyze: true,
     // transpile: ['vue-json-pretty'],
+    // transpile: ['vuex-module-decorators'],
     /*
     ** You can extend webpack config here
     */
