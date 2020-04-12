@@ -23,11 +23,11 @@ export default class PostModule extends VuexModule {
   }
 
   @Mutation
-  updatePosts(posts: PostEntity[]) {
+  setPosts(posts: PostEntity[]) {
     this.posts = posts;
   }
 
-  @Action({commit: 'updatePosts'})
+  @Action({commit: 'setPosts'})
   async fetchPosts() {
     return await axios.get('https://jsonplaceholder.typicode.com/posts?_page=1')
   }
