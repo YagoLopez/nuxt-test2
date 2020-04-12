@@ -1,7 +1,7 @@
 {
   "name": "nuxt-test2",
   "version": "1.0.0",
-  "description": "My fantastic Nuxt.js project",
+  "description": "Nuxt.js test project",
   "author": "Yago Lopez",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "generate": "nuxt-ts generate",
     "start": "nuxt-ts start",
     "test": "jest",
-    "analyze": "nuxt build --analyze"
+    "analyze": "nuxt-ts --analyze"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.0",
@@ -19,10 +19,7 @@
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-infinite-loading": "^2.4.5",
-    "vue-json-pretty": "^1.6.3",
     "vue-property-decorator": "^8.4.1",
-    "vue-virtual-scroller": "^1.0.4",
-    "vue-waterfall": "^1.0.6",
     "vuex-module-decorators": "^0.16.1"
   },
   "devDependencies": {
