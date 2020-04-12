@@ -38,7 +38,7 @@
 <script lang="ts">
   import {Vue, Component} from 'vue-property-decorator';
   import {getModule} from 'vuex-module-decorators';
-  import PostModule from '~/store/PostModule';
+  import PostsModule from '~/store/PostsModule';
 
   @Component
   export default class InfiniteScroll extends Vue {
@@ -48,9 +48,9 @@
     $store: any;
 
     async onReachBottomPage($state: any) {
-      const postsModule: PostModule = getModule(PostModule, this.$store);
+      const postsModule: PostsModule = getModule(PostsModule, this.$store);
       await postsModule.fetchPosts();
-      const newPosts = postsModule.posts.data;
+      const newPosts = postsModule.posts;
       if (newPosts.length > 1) {
         this.posts.push(...newPosts);
         $state.loaded();
