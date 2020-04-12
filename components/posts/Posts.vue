@@ -41,6 +41,7 @@
     // todo: review posts and $store type
     // todo: create post repository for separation of concerns?
     posts: any = [];
+    page: number = 1;
     $store: any;
 
     // get url() {
