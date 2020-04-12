@@ -32,7 +32,7 @@
 <script lang="ts">
   import {Vue, Component} from 'vue-property-decorator';
   import { getModule } from 'vuex-module-decorators';
-  import PostModule from '~/store/PostModule';
+  import PostsModule from '~/store/PostsModule';
 
   @Component
   export default class Posts extends Vue {
@@ -59,7 +59,7 @@
       // this.fetchData();
       // console.log('state', this.$store.state);
 
-      const postsModule: PostModule = getModule(PostModule, this.$store);
+      const postsModule: PostsModule = getModule(PostsModule, this.$store);
 
       // use getters
       // const commentCount = postsModule.totalComments;
@@ -75,13 +75,13 @@
 
     }
 
-    infiniteScroll($state: any) {
-      const postsModule: PostModule = getModule(PostModule, this.$store);
-        setTimeout(() => {
-          postsModule.fetchPostsNextPage($state);
-        }, 500)
-
-    }
+    // infiniteScroll($state: any) {
+    //   const postsModule: PostsModule = getModule(PostsModule, this.$store);
+    //     setTimeout(() => {
+    //       postsModule.fetchPostsNextPage($state);
+    //     }, 500)
+    //
+    // }
 
     // infiniteScroll($state: any) {
     //   setTimeout(() => {
