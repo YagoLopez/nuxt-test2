@@ -4,7 +4,6 @@ import axios from 'axios';
 type PostEntity = any;
 
 const BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
-const DELAY = 500;
 
 @Module({
   name: 'PostsModule',
