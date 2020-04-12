@@ -1,6 +1,6 @@
 # nuxt-test2
 
-> Nuxt.js project
+> My fantastic Nuxt.js project
 
 ## Build Setup
 
