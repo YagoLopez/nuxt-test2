@@ -27,7 +27,7 @@
               </v-card>
             </v-flex>
           </v-layout>
-          <infinite-loading spinner="spiral" @infinite="infiniteHandler"/>
+          <infinite-loading spinner="spiral" @infinite="onReachBottomPage"/>
         </v-card>
       </client-only>
 
@@ -37,24 +37,22 @@
 
 <script lang="ts">
   import {Vue, Component} from 'vue-property-decorator';
-  import axios from 'axios';
+  import {getModule} from 'vuex-module-decorators';
+  import PostModule from '~/store/PostModule';
 
   @Component
   export default class InfiniteScroll extends Vue {
 
     posts: any = [];
     page: number = 1;
+    $store: any;
 
-    get url() {
-      return `https://jsonplaceholder.typicode.com/posts?_page=${this.page}`;
-    }
-
-    async infiniteHandler($state: any) {
-      const response = await axios.get(this.url);
-      if (response.data.length > 1) {
-        this.page += 1;
-        // debugger
-        this.posts.push(...response.data);
+    async onReachBottomPage($state: any) {
+      const postsModule: PostModule = getModule(PostModule, this.$store);
+      await postsModule.fetchPosts();
+      const newPosts = postsModule.posts.data;
+      if (newPosts.length > 1) {
+        this.posts.push(...newPosts);
         $state.loaded();
       } else {
         $state.complete();

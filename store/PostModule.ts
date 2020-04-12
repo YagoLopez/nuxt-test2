@@ -41,24 +41,16 @@ export default class PostModule extends VuexModule {
   }
 
   @Action({commit: 'setPosts'})
-  async fetchInitialPosts() {
+  async fetchPosts() {
     let result;
     try {
       result = await axios.get(this.url);
-      // this.page = this.page + 1;
+      this.incrementPage();
+      // todo: añadir aqui los nuevos posts a this.posts
       // console.warn('posts', result);
     } catch (e) {
       console.error(e);
     }
     return result;
-  }
-
-  @Action
-  fetchPostsNextPage($state: any) {
-
-    if (this.page > 1) {
-    }
-    $state.loaded();
-    alert()
   }
 }
