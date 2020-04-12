@@ -67,7 +67,7 @@
       // postsModule.setPosts(newPostsArray)
 
       // dispatch action
-      await postsModule.fetchInitialPosts();
+      await postsModule.fetchPosts();
 
       // access posts
       this.posts = postsModule.posts.data;
