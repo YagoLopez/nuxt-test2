@@ -34,10 +34,6 @@
   import { getModule } from 'vuex-module-decorators';
   import MyStoreModule from '~/store/MyStoreModule';
   import PostModule from '~/store/PostModule';
-  // import axios from 'axios';
-
-  // import PostsModule from '../../store/PostModule';
-  // import store from '../../store';
 
   @Component
   export default class Posts extends Vue {
@@ -46,6 +42,8 @@
     // todo: create post repository for separation of concerns
     posts: Object[] = [];
     page: number = 1;
+    // todo: review type
+    $store: any;
 
     get url() {
       return `https://jsonplaceholder.typicode.com/posts?_page=${this.page}`;
