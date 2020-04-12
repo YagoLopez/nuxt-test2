@@ -39,7 +39,6 @@
   import {Vue, Component} from 'vue-property-decorator';
   import axios from 'axios';
 
-
   @Component
   export default class InfiniteScroll extends Vue {
 
@@ -50,18 +49,16 @@
       return `https://jsonplaceholder.typicode.com/posts?_page=${this.page}`;
     }
 
-    infiniteHandler($state) {
-      axios.get(this.url)
-        .then(response => {
-        if (response.data.length > 1) {
-          this.page += 1;
-          // debugger
-          this.posts.push(...response.data);
-          $state.loaded();
-        } else {
-          $state.complete();
-        }
-      });
+    async infiniteHandler($state: any) {
+      const response = await axios.get(this.url);
+      if (response.data.length > 1) {
+        this.page += 1;
+        // debugger
+        this.posts.push(...response.data);
+        $state.loaded();
+      } else {
+        $state.complete();
+      }
     }
   }
 </script>
