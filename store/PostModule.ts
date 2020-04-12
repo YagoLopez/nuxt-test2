@@ -11,9 +11,8 @@ type PostEntity = any;
 export default class PostModule extends VuexModule {
 
   posts: PostEntity[] = [];
-  test = 'test';
 
-  get totalComments (): number {
+  get totalComments(): number {
     return this.posts.filter((post) => {
       // Take those posts that have comments
       return post.comments && post.comments.length;
@@ -28,15 +27,8 @@ export default class PostModule extends VuexModule {
     this.posts = posts;
   }
 
-  // @Action({commit: 'updatePosts'})
-  // async function fetchPosts() {
-  //   return await axios.get('https://jsonplaceholder.typicode.com/posts')
-  // }
-
-
-  @Action
+  @Action({commit: 'updatePosts'})
   async fetchPosts() {
-    const posts = await axios.get('https://jsonplaceholder.typicode.com/posts?_page=1');
-    this.context.commit('updatePosts', posts);
+    return await axios.get('https://jsonplaceholder.typicode.com/posts?_page=1')
   }
 }

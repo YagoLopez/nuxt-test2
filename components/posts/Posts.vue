@@ -38,16 +38,14 @@
   @Component
   export default class Posts extends Vue {
 
-    // todo: improve posts and post type
-    // todo: create post repository for separation of concerns
-    posts: Object[] = [];
-    page: number = 1;
-    // todo: review type
+    // todo: review posts and $store type
+    // todo: create post repository for separation of concerns?
+    posts: any = [];
     $store: any;
 
-    get url() {
-      return `https://jsonplaceholder.typicode.com/posts?_page=${this.page}`;
-    }
+    // get url() {
+    //   return `https://jsonplaceholder.typicode.com/posts?_page=${this.page}`;
+    // }
 
     // async fetchData() {
     //     const response = await axios.get(this.url);
@@ -62,7 +60,7 @@
 
       // console.log('state', this.$store.state);
 
-      const postsModule: any = getModule(PostModule, this.$store);
+      const postsModule: PostModule = getModule(PostModule, this.$store);
 
 
       // use getters
@@ -76,7 +74,7 @@
 
       // access posts
       this.posts = postsModule.posts.data;
-      // console.warn('posts', postsModule.posts.data);
+      // console.warn('posts', postsModule.post.data);
 
 
 
