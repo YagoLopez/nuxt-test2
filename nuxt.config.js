@@ -55,7 +55,7 @@ export default {
   */
   build: {
     analyze: false,
-    // transpile: ['vuex-module-decorators'],
+    transpile: ['vuex-module-decorators'],
     /*
     ** You can extend webpack config here
     */
