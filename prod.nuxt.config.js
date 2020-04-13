@@ -1,4 +1,11 @@
+// only add `router.base = '/<repository-name>/'` if `DEPLOY_ENV` is `GH_PAGES`
+
+// const routerBase = (process.env.DEPLOY_ENV === 'GH_PAGES')
+//   ? {router: {base: '/nuxt-test2/dist'}}
+//   : {build: {buildDir: 'dist-local'}};
+
 export default {
+  router: {base: '/nuxt-test2/dist'},
 
   // mode: 'universal',
   mode: 'spa',
@@ -55,7 +62,7 @@ export default {
   ** Build configuration
   */
   build: {
-    buildDir: 'dist-local',
+    buildDir: 'dist',
     publicPath: 'nuxt',
     analyze: false,
     transpile: ['vuex-module-decorators'],
