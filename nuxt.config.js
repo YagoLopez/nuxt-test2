@@ -1,6 +1,15 @@
+// only add `router.base = '/<repository-name>/'` if `DEPLOY_ENV` is `GH_PAGES`
+// const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+//   router: {
+//     base: '/<repository-name>/'
+//   }
+// } : {};
 
 export default {
-  mode: 'universal',
+  // ...routerBase,
+
+  // mode: 'universal',
+  mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -34,8 +43,8 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    // '@nuxt/typescript-build',
-    // '@nuxtjs/vuetify',
+    '@nuxt/typescript-build',
+    '@nuxtjs/vuetify',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     // '@nuxtjs/tailwindcss',
   ],
