@@ -44,7 +44,6 @@
   export default class InfiniteScroll extends Vue {
 
     posts: any = [];
-    page: number = 1;
     $store: any;
 
     async onReachBottomPage($state: any) {

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 type PostEntity = any;
 
-const BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
+axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 
 @Module({
   name: 'PostsModule',
@@ -13,32 +13,32 @@ const BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
 export default class PostsModule extends VuexModule {
 
   private _posts: PostEntity[] = [];
-  private _page: number = 1;
+  private _page: number = 0;
 
   get posts() {
     return this._posts;
   }
 
-  get url(): string {
-    return `${BASE_URL}?_page=${this._page}`
+  get uri(): string {
+    return `/posts?_page=${this._page}`
   }
 
   @Mutation
-  setPosts(posts: PostEntity[]) {
+  mutationSetPosts(posts: PostEntity[]) {
     this._posts = posts;
   }
 
   @Mutation
-  incrementPage() {
+  mutationIncrementPage() {
     this._page = this._page + 1;
   }
 
   @Action
   async fetchPosts() {
     try {
-      const {data} = await axios.get(this.url);
-      this.setPosts(data);
-      this.incrementPage();
+      this.mutationIncrementPage();
+      const {data} = await axios.get(this.uri);
+      this.mutationSetPosts(data);
     } catch (e) {
       console.error(e);
     }
