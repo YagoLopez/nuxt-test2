@@ -6,14 +6,14 @@
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "generate": "nuxt-ts generate",
+    "build:local": "nuxt-ts build",
+    "generate:local": "nuxt-ts generate",
+    "build:github": "cross-env DEPLOY_ENV=GH_PAGES nuxt-ts build",
+    "generate:github": "cross-env DEPLOY_ENV=GH_PAGES nuxt-ts generate"
     "start": "nuxt-ts start",
     "test": "jest",
     "analyze": "nuxt-ts build --analyze",
-    "serve": "lite-server",
-    "build:github": "cross-env DEPLOY_ENV=GH_PAGES nuxt-ts build",
-    "generate:github": "cross-env DEPLOY_ENV=GH_PAGES nuxt-ts generate"
+    "serve": "lite-server"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.0",
