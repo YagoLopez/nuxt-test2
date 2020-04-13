@@ -10,7 +10,8 @@
     "generate": "nuxt-ts generate",
     "start": "nuxt-ts start",
     "test": "jest",
-    "analyze": "nuxt-ts build --analyze"
+    "analyze": "nuxt-ts build --analyze",
+    "serve": "lite-server"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.0",
@@ -29,6 +30,7 @@
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-jest": "^24.1.0",
     "jest": "^24.1.0",
+    "lite-server": "^2.5.4",
     "ts-jest": "^25.0.0",
     "vue-jest": "^4.0.0-0"
   }
