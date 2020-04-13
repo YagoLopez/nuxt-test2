@@ -11,7 +11,9 @@
     "start": "nuxt-ts start",
     "test": "jest",
     "analyze": "nuxt-ts build --analyze",
-    "serve": "lite-server"
+    "serve": "lite-server",
+    "build:github": "cross-env DEPLOY_ENV=GH_PAGES nuxt-ts build",
+    "generate:github": "cross-env DEPLOY_ENV=GH_PAGES nuxt-ts generate"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.0",
