@@ -37,5 +37,5 @@
     "ts-jest": "^25.0.0",
     "vue-jest": "^4.0.0-0"
   },
-  "homepage": "."
+  "homepage": "/dist/"
 }
