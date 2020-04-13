@@ -1,9 +1,8 @@
 // only add `router.base = '/<repository-name>/'` if `DEPLOY_ENV` is `GH_PAGES`
-const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
-  router: {
-    base: '/nuxt-test2/dist'
-  }
-} : {};
+
+const routerBase = (process.env.DEPLOY_ENV === 'GH_PAGES')
+  ? {router: {base: '/nuxt-test2/dist'}}
+  : {build: {buildDir: 'dist-local'}};
 
 export default {
   ...routerBase,
