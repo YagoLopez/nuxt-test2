@@ -63,8 +63,8 @@ export default {
   ** Build configuration
   */
   build: {
-    publicPath: 'nuxt',
     buildDir: 'dist',
+    publicPath: 'nuxt',
     analyze: false,
     transpile: ['vuex-module-decorators'],
     /*
