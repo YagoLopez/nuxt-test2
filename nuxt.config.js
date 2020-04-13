@@ -54,6 +54,7 @@ export default {
   ** Build configuration
   */
   build: {
+    buildDir: 'dist',
     analyze: false,
     transpile: ['vuex-module-decorators'],
     /*
