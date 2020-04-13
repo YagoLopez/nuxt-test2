@@ -36,6 +36,5 @@
     "lite-server": "^2.5.4",
     "ts-jest": "^25.0.0",
     "vue-jest": "^4.0.0-0"
-  },
-  "homepage": "/dist/"
+  }
 }
